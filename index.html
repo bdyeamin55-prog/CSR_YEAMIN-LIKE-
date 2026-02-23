@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YEAMIN FREE Fire লাইক  - অটো লাইক সিস্টেম</title>
+    <!-- ফন্ট অ্যাওসাম আইকন -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- গুগল ফন্টস -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* অ্যানিমেটেড ব্যাকগ্রাউন্ড */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* হেডার সেকশন */
+        .header {
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '❤️';
+            position: absolute;
+            font-size: 150px;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* কন্টেন্ট এরিয়া */
+        .content {
+            padding: 40px 30px;
+        }
+
+        /* ইনপুট গ্রুপ */
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+
+        .input-group label i {
+            color: #FF416C;
+            margin-right: 8px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1.1em;
+            font-family: 'Hind Siliguri', sans-serif;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #FF416C;
+            box-shadow: 0 0 20px rgba(255, 65, 108, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .input-group input:hover,
+        .input-group select:hover {
+            border-color: #FF4B2B;
+        }
+
+        /* টোকেন কাউন্টার কার্ড */
+        .token-info {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 65, 108, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0); }
+        }
+
+        .token-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .token-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .token-card i {
+            font-size: 2em;
+            color: #FF416C;
+            margin-bottom: 8px;
+        }
+
+        .token-card .label {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .token-card .count {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* কনফার্ম বাটন */
+        .confirm-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #FF416C, #FF4B2B);
+            border: none;
+            border-radius: 15px;
+            color: white;
+            font-size: 1.3em;
+            font-weight: 600;
+            font-family: 'Hind Siliguri', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.3);
+        }
+
+        .confirm-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .confirm-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .confirm-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 65, 108, 0.4);
+        }
+
+        .confirm-btn:active {
+            transform: translateY(0);
+        }
+
+        .confirm-btn i {
+            margin-right: 10px;
+        }
+
+        /* রেজাল্ট কন্টেইনার */
+        .result-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 5px solid #FF416C;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 500;
+            color: #666;
+        }
+
+        .result-value {
+            font-weight: 700;
+            color: #FF416C;
+        }
+
+        .success-badge {
+            background: #d4edda;
+            color: #155724;
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .error-badge {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 8px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        /* লোডিং স্পিনার */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #FF416C;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ফুটার */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            color: #666;
+        }
+
+        .footer i {
+            color: #FF416C;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        /* রেস্পন্সিভ ডিজাইন */
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .token-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-fire"></i> Free Fire লাইক বুস্টার</h1>
+            <p>অটোমেটিক লাইক সিস্টেম | সেকেন্ডেই লাইক</p>
+        </div>
+
+        <div class="content">
+            <!-- টোকেন ইনফরমেশন কার্ড -->
+            <div class="token-info" id="tokenInfo">
+                <div class="token-card">
+                    <i class="fas fa-users"></i>
+                    <div class="label">রেগুলার অ্যাকাউন্ট</div>
+                    <div class="count" id="regularCount">-</div>
+                </div>
+                <div class="token-card">
+                    <i class="fas fa-eye"></i>
+                    <div class="label">ভিজিট অ্যাকাউন্ট</div>
+                    <div class="count" id="visitCount">-</div>
+                </div>
+            </div>
+
+            <!-- ইনপুট ফর্ম -->
+            <div class="input-group">
+                <label for="uid">
+                    <i class="fas fa-id-card"></i> ইউজার আইডি (UID)
+                </label>
+                <input type="text" id="uid" placeholder="আপনার UID লিখুন (যেমন: 4205243385)" maxlength="20">
+            </div>
+
+            <div class="input-group">
+                <label for="server">
+                    <i class="fas fa-globe"></i> সার্ভার সিলেক্ট করুন
+                </label>
+                <select id="server">
+                    <option value="BD">🇧🇩 বাংলাদেশ (BD)</option>
+                    <option value="IND">🇮🇳 ইন্ডিয়া (IND)</option>
+                    <option value="BR">🇧🇷 ব্রাজিল (BR)</option>
+                    <option value="US">🇺🇸 ইউএসএ (US)</option>
+                    <option value="SAC">🌍 স্যাক (SAC)</option>
+                    <option value="NA">🌍 নর্থ আমেরিকা (NA)</option>
+                </select>
+            </div>
+
+            <!-- কনফার্ম বাটন -->
+            <button class="confirm-btn" onclick="sendLikeRequest()">
+                <i class="fas fa-heart"></i> কনফার্ম লাইক
+            </button>
+
+            <!-- লোডিং স্পিনার -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>লাইক পাঠানো হচ্ছে... দয়া করে অপেক্ষা করুন</p>
+                <small style="color: #666;">এতে কয়েক সেকেন্ড সময় লাগতে পারে</small>
+            </div>
+
+            <!-- রেজাল্ট কন্টেইনার -->
+            <div class="result-container" id="result" style="display: none;">
+                <h3 style="color: #333; margin-bottom: 15px;">
+                    <i class="fas fa-chart-bar"></i> রেজাল্ট
+                </h3>
+                
+                <div class="result-item">
+                    <span class="result-label"><i class="fas fa-user"></i> নিকনেম:</span>
+                    <span class="result-value" id="nickname">-</span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label"><i class="fas fa-id-card"></i> UID:</span>
+                    <span class="result-value" id="displayUid">-</span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label"><i class="fas fa-heart"></i> আগের লাইক:</span>
+                    <span class="result-value" id="beforeLikes">0</span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label"><i class="fas fa-heart" style="color: #FF416C;"></i> পরের লাইক:</span>
+                    <span class="result-value" id="afterLikes">0</span>
+                </div>
+                
+                <div class="result-item">
+                    <span class="result-label"><i class="fas fa-arrow-up"></i> বেড়েছে:</span>
+                    <span class="result-value" id="increment">0</span>
+                </div>
+                
+                <div id="statusMessage" style="text-align: center;"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><i class="fas fa-heart"></i> পাওয়ার্ড বাই Free Fire লাইক বুস্টার সিস্টেম <i class="fas fa-heart"></i></p>
+            <p style="font-size: 0.9em; margin-top: 5px;">UID এবং সার্ভার সিলেক্ট করে কনফার্ম বাটন ক্লিক করুন</p>
+        </div>
+    </div>
+
+    <script>
+        // পেজ লোড হওয়ার সাথে সাথে টোকেন ইনফো লোড করা
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTokenInfo();
+        });
+
+        // টোকেন ইনফরমেশন লোড করার ফাংশন
+        async function loadTokenInfo() {
+            try {
+                const response = await fetch('/token_info');
+                const data = await response.json();
+                
+                // বর্তমান সিলেক্টেড সার্ভারের ভিত্তিতে কাউন্ট দেখানো
+                updateTokenCounts(data);
+            } catch (error) {
+                console.error('Token info load error:', error);
+            }
+        }
+
+        // টোকেন কাউন্ট আপডেট করার ফাংশন
+        function updateTokenCounts(data) {
+            const server = document.getElementById('server').value;
+            
+            if (data[server]) {
+                document.getElementById('regularCount').textContent = data[server].regular_tokens || 0;
+                document.getElementById('visitCount').textContent = data[server].visit_tokens || 0;
+            }
+        }
+
+        // সার্ভার চেঞ্জ হলে টোকেন কাউন্ট আপডেট
+        document.getElementById('server').addEventListener('change', function() {
+            loadTokenInfo();
+        });
+
+        // লাইক রিকোয়েস্ট পাঠানোর ফাংশন
+        async function sendLikeRequest() {
+            const uid = document.getElementById('uid').value.trim();
+            const server = document.getElementById('server').value;
+            
+            // ভ্যালিডেশন
+            if (!uid) {
+                showError('দয়া করে আপনার UID লিখুন!');
+                return;
+            }
+            
+            if (uid.length < 5 || uid.length > 20) {
+                showError('সঠিক UID দিন (৫-২০ ডিজিট)!');
+                return;
+            }
+            
+            if (!/^\d+$/.test(uid)) {
+                showError('UID শুধুমাত্র সংখ্যা হতে হবে!');
+                return;
+            }
+            
+            // UI আপডেট
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('result').style.display = 'none';
+            
+            try {
+                // API কল
+                const response = await fetch(`/like?uid=${uid}&server_name=${server}`);
+                const data = await response.json();
+                
+                // লোডিং বন্ধ
+                document.getElementById('loading').classList.remove('active');
+                
+                // রেজাল্ট দেখানো
+                displayResult(data);
+                
+                // সাকসেস মেসেজ
+                if (data.LikesGivenByAPI > 0) {
+                    showSuccessMessage(`🎉 অভিনন্দন! ${data.LikesGivenByAPI} টি লাইক সফলভাবে দেওয়া হয়েছে!`);
+                } else if (data.LikesGivenByAPI === 0) {
+                    showWarningMessage('⚠️ কোন লাইক বাড়েনি! আবার চেষ্টা করুন।');
+                } else {
+                    showErrorMessage('❌ লাইক দিতে সমস্যা হয়েছে! আবার চেষ্টা করুন।');
+                }
+                
+            } catch (error) {
+                console.error('Request error:', error);
+                document.getElementById('loading').classList.remove('active');
+                showErrorMessage('❌ সার্ভারে সমস্যা! পরে আবার চেষ্টা করুন।');
+            }
+        }
+
+        // রেজাল্ট ডিসপ্লে করার ফাংশন
+        function displayResult(data) {
+            document.getElementById('nickname').textContent = data.PlayerNickname || 'N/A';
+            document.getElementById('displayUid').textContent = data.UID || '-';
+            document.getElementById('beforeLikes').textContent = data.LikesbeforeCommand || 0;
+            document.getElementById('afterLikes').textContent = data.LikesafterCommand || 0;
+            document.getElementById('increment').textContent = data.LikesGivenByAPI || 0;
+            
+            // স্ট্যাটাস অনুযায়ী কালার
+            const incrementElement = document.getElementById('increment');
+            if (data.LikesGivenByAPI > 0) {
+                incrementElement.style.color = '#28a745';
+            } else if (data.LikesGivenByAPI === 0) {
+                incrementElement.style.color = '#ffc107';
+            } else {
+                incrementElement.style.color = '#dc3545';
+            }
+            
+            document.getElementById('result').style.display = 'block';
+            
+            // অটো স্ক্রোল রেজাল্টে
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // এরর মেসেজ দেখানোর ফাংশন
+        function showError(message) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.innerHTML = `<div class="error-badge"><i class="fas fa-exclamation-circle"></i> ${message}</div>`;
+            document.getElementById('result').style.display = 'block';
+            
+            // ৩ সেকেন্ড পর মেসেজ মুছে ফেলা
+            setTimeout(() => {
+                statusDiv.innerHTML = '';
+                document.getElementById('result').style.display = 'none';
+            }, 3000);
+        }
+
+        function showSuccessMessage(message) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.innerHTML = `<div class="success-badge"><i class="fas fa-check-circle"></i> ${message}</div>`;
+        }
+
+        function showWarningMessage(message) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.innerHTML = `<div style="background: #fff3cd; color: #856404; padding: 8px 15px; border-radius: 50px; display: inline-block; font-weight: 500; margin-top: 10px;"><i class="fas fa-exclamation-triangle"></i> ${message}</div>`;
+        }
+
+        function showErrorMessage(message) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.innerHTML = `<div class="error-badge"><i class="fas fa-times-circle"></i> ${message}</div>`;
+        }
+
+        // এন্টার কী প্রেস করলে লাইক পাঠানো
+        document.getElementById('uid').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendLikeRequest();
+            }
+        });
+
+        // কপি পেস্ট প্রতিরোধ না করে ভ্যালিডেশন
+        document.getElementById('uid').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // টুলটিপ
+        const tooltips = document.querySelectorAll('[data-tooltip]');
+        tooltips.forEach(element => {
+            element.addEventListener('mouseenter', function(e) {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = this.dataset.tooltip;
+                document.body.appendChild(tooltip);
+                
+                const rect = this.getBoundingClientRect();
+                tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+                tooltip.style.left = rect.left + (rect.width - tooltip.offsetWidth) / 2 + 'px';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                document.querySelector('.tooltip')?.remove();
+            });
+        });
+    </script>
+</body>
+</html>

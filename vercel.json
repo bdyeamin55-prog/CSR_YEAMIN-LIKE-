@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/app.py"
+    },
+    {
+      "src": "/like",
+      "dest": "/app.py"
+    },
+    {
+      "src": "/token_info",
+      "dest": "/app.py"
+    },
+    {
+      "src": "/health",
+      "dest": "/app.py"
+    }
+  ],
+  "env": {
+    "PYTHON_VERSION": "3.9",
+    "FLASK_ENV": "production"
+  }
+}
